@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+{% load static %}{% load i18n %}
+{% block title %}Members{% endblock %}
+
+{% block content %}
+
+    <div class="container">
+
+        <div class="row">
+            <div class="col-xs-12">
+                <h2>Credit Card Offers</h2>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="list-group">
+                    {% for offer in creditcardoffer_list %}
+                        <a href="{{ MEDIA_URL }}{{ offer.image }} " class="list-group-item">
+                            <h4 class="list-group-item-heading">{{ offer.id }} page
+                                num: {{ offer.extracted_from.page_number }}</h4>
+                            {% url 'content:creditcard-detail' offer.id %}
+                            <p class="list-group-item-text">url:
+                            <ul>
+                                {% for crawl_url in offer.crawl_urls.all %}
+                                    <li>{{ crawl_url.url }}</li>
+                                {% endfor %}
+                            </ul>
+                            </p>
+                            {#                <p>text: {{ offer.text }}</p>#}
+                            <img src="{{ MEDIA_URL }}{{ offer.image }}">
+                        </a>
+                    {% endfor %}
+
+
+                </div>
+                {% if is_paginated %}
+                    <div class="pagination">
+            <span class="page-links">
+                {% if page_obj.has_previous %}
+                    <a href="?page={{ page_obj.previous_page_number }}">previous</a>
+                {% endif %}
+                <span class="page-current">
+                    Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+                </span>
+                {% if page_obj.has_next %}
+                    <a href="?page={{ page_obj.next_page_number }}">next</a>
+                {% endif %}
+            </span>
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+
+    </div>
+
+{% endblock content %}

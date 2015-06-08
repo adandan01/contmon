@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% load static %}{% load i18n %}
+{% block title %}Members{% endblock %}
+
+{% block content %}
+
+<div class="container">
+
+  <div class="row">
+    <div class="col-xs-12">
+      <h2>Crawled Page</h2>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-lg-12">
+      <div class="list-group">
+          {% for page in crawledpage_list %}
+            <a href="{{ MEDIA_URL }}{{ page.image }} " class="list-group-item">
+              <h4 class="list-group-item-heading">{{ page.id }} page num: {{ page.page_number }}</h4>
+{#                {% url 'content:detail' page.id %}#}
+              <p class="list-group-item-text">url:...</p>
+            </a>
+          {% endfor %}
+
+      </div>
+    </div>
+  </div>
+
+</div>
+
+{% endblock content %}
