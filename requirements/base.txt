@@ -38,3 +38,4 @@ python-cjson
 simplejson
 django-haystack
 Whoosh
+djangorestframework

@@ -1,0 +1,19 @@
+<h1>Credit Cards</h1>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>id</th>
+      <th>Card Name</th>
+      <th>Categories</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr ng-repeat="card in creditcards.list">
+      <td>{{card.id}}</td>
+      <td><a ui-sref=".details({id:card.id})">{{card.name}}</a></td>
+      <td>{{card.categories.join(', ')}}</td>
+    </tr>
+  </tbody>
+</table>
+<div ui-view></div>

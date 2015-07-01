@@ -4,7 +4,8 @@ from .models import CrawledPage, CreditCardOffer
 
 class CreditCardOfferIndex(indexes.SearchIndex, indexes.Indexable):
     text = indexes.CharField(document=True, use_template=True)
-    domain = indexes.CharField(model_attr='domain')
+    domain = indexes.CharField(model_attr='domain', faceted=True)
+    category = indexes.CharField(model_attr='category', faceted=True)
 
     def get_model(self):
         return CreditCardOffer
