@@ -1,6 +1,22 @@
 /* Put your css in here */
 
 .user-details {
-  background-color: #eee;
-  padding-top: 10px;
+    background-color: #eee;
+    padding-top: 10px;
+}
+
+body {
+    padding-top: 80px;
+    min-width: 768px;
+}
+
+.layout-column *:not(.ui-splitbar) {
+    /*background : white;*/
+}
+
+.layout-column .ui-splitbar {
+    background: #eee no-repeat center;
+}
+.ui-layout-column > .ui-splitbar > a, .ui-layout-row > .ui-splitbar > a {
+    color: black;
 }
