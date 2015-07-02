@@ -40,7 +40,8 @@ THIRD_PARTY_APPS = (
     'allauth',  # registration
     'allauth.account',  # registration
     'allauth.socialaccount',  # registration
-    'haystack'
+    'haystack',
+    'rest_framework',
 )
 
 # Apps specific for this project go here.
@@ -265,4 +266,9 @@ HAYSTACK_CONNECTIONS = {
         'ENGINE': 'haystack.backends.whoosh_backend.WhooshEngine',
         'PATH': os.path.join(os.path.dirname(__file__), 'whoosh_index'),
     },
+}
+
+REST_FRAMEWORK = {
+    # 'DEFAULT_PERMISSION_CLASSES': ('rest_framework.permissions.IsAdminUser',),
+    'PAGE_SIZE': 30
 }

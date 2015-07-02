@@ -6,6 +6,8 @@ from django.core.urlresolvers import reverse
 from django.views.generic import DetailView, ListView, RedirectView, UpdateView
 
 from braces.views import LoginRequiredMixin
+from rest_framework import viewsets
+from .serializers import CreditCardOfferSerializer
 
 from .models import CrawledPage, CreditCardOffer
 
@@ -38,4 +40,11 @@ class CreditCardOfferListView(LoginRequiredMixin, ListView):
     slug_url_kwarg = "id"
     paginate_by = 10
 
+
+class CreditCardOfferViewSet(viewsets.ModelViewSet):
+    """
+    API endpoint that allows users to be viewed or edited.
+    """
+    queryset = CreditCardOffer.objects.all()
+    serializer_class = CreditCardOfferSerializer
 

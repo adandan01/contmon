@@ -1,9 +1,16 @@
 <div class="container-fluid slide card-details">
-    <p>Id: {{ details.id }}</p>
 
-    <p>Card Name: {{ details.name }}</p>
+    <h4>{{ details.name }} </h4>
 
-    <p>Categories: {{ details.categories.join(', ')}}</p>
+    <p>Domain: {{ details.domain }}</p>
 
-    <p>Appears on : {{ details.urls.join(', ')}}</p>
+    <p class="">
+        <img src="{{ details.image }}" width="90%" height="50%">
+    </p>
+
+    <p>Appears on : </p>
+    <ul>
+        <li ng-repeat="url in details.crawl_urls">{{ url.path }}</li>
+    </ul>
+
 </div>

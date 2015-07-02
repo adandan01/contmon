@@ -9,10 +9,10 @@
         .factory('CreditCardsService', Service);
 
     Service.$inject = [
-        '$filter'
+        '$filter','$http'
     ];
 
-    function Service($filter) {
+    function Service($filter, $http) {
         var creditcards = [{
             id: 1,
             name: 'Chase Freedom',
@@ -51,12 +51,22 @@
         };
         var websites = function () {
             var websites = {};
-            for (var i=0;i< creditcards.length;i++) {
+            for (var i = 0; i < creditcards.length; i++) {
                 websites[creditcards[i].website] = true;
             }
             console.log('websites', Object.keys(websites));
             return Object.keys(websites)
         };
+
+        var list = function() {
+            return $http.get('/content/api/creditcards/');
+        }
+
+        var getById = function(id) {
+            return $http.get('/content/api/creditcards/' + id +'/');
+        }
+
+
 
         return {
             list: list,

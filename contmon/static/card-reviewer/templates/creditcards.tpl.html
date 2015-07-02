@@ -1,7 +1,6 @@
 <div style="position: relative; min-height: 800px;">
     <div ui-layout="{ flow : 'column' }" class="layout-column">
-        <div ui-layout-container size="20%">
-            <h1>Websites</h1>
+        <div ui-layout-container size="130px">
             <table class="table">
                 <thead>
                 <tr>
@@ -17,29 +16,29 @@
 
         </div>
         <div ui-layout-container>
-            <h1>Credit Cards</h1>
-            <table class="table">
-                <thead>
-                <tr>
-                    <th>id</th>
-                    <th>Card Name</th>
-                    <th>Website</th>
-                    <th>Categories</th>
-                </tr>
-                </thead>
-                <tbody>
-                <tr ng-repeat="card in creditcards.list | filter:creditcards.filter_by_website">
-                    <td>{{ card.id }}</td>
-                    <td><a ui-sref=".details({id:card.id})">{{ card.name }}</a></td>
-                    <td>{{ card.website}}</td>
-                    <td>{{ card.categories.join(', ')}}</td>
-                </tr>
-                </tbody>
-            </table>
+            <div infinite-scroll="creditcards.loadMore()" nfinite-scroll-distance="0">
+                <table class="table">
+                    <thead>
+                    <tr>
+
+                        <th>Card Name</th>
+
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr ng-repeat="card in creditcards.list | filter:creditcards.filter_by_website">
+                        <td><a ui-sref=".details({id:card.id})">{{ card.name }}</a></td>
+                        <td>{{ card.domain }}</td>
+                    </tr>
+                    </tbody>
+                </table>
+                <div ng-show='creditcards.busy'>Loading data...</div>
+
+            </div>
 
         </div>
 
-        <div ui-layout-container>
+        <div ui-layout-container size="55%">
             <div ui-view></div>
         </div>
     </div>

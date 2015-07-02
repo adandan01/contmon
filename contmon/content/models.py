@@ -37,7 +37,9 @@ class AbstractExtractedContent(models.Model):
 
 
 class CreditCardOffer(AbstractExtractedContent):
-    pass
+    @property
+    def name(self):
+        return self.text.split('\n')[0]
 
 
 # class ComplianceViolation(models.Model):

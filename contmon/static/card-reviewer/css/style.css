@@ -6,7 +6,7 @@
 }
 
 body {
-    padding-top: 80px;
+    padding-top: 50px;
     min-width: 768px;
 }
 
@@ -19,4 +19,10 @@ body {
 }
 .ui-layout-column > .ui-splitbar > a, .ui-layout-row > .ui-splitbar > a {
     color: black;
+}
+.navbar-fixed-top{
+    margin-bottom: 30px;
+}
+.stretch {
+    overflow: auto;
 }
