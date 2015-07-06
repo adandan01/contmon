@@ -1,14 +1,14 @@
 # -*- coding: utf-8 -*-
 from __future__ import absolute_import, unicode_literals
+from django.db.models import Count
 
-
-from django.core.urlresolvers import reverse
-from django.views.generic import DetailView, ListView, RedirectView, UpdateView
-
+from django.views.generic import DetailView, ListView
 from braces.views import LoginRequiredMixin
-from rest_framework import viewsets
-from .serializers import CreditCardOfferSerializer
+from rest_framework import viewsets, generics
+from rest_framework.response import Response
+from rest_framework.views import APIView
 
+from .serializers import CreditCardOfferSerializer
 from .models import CrawledPage, CreditCardOffer
 
 
@@ -41,10 +41,31 @@ class CreditCardOfferListView(LoginRequiredMixin, ListView):
     paginate_by = 10
 
 
-class CreditCardOfferViewSet(viewsets.ModelViewSet):
-    """
-    API endpoint that allows users to be viewed or edited.
-    """
-    queryset = CreditCardOffer.objects.all()
+class CreditCardOfferAPIListView(generics.ListAPIView):
     serializer_class = CreditCardOfferSerializer
 
+    def get_queryset(self):
+        queryset = CreditCardOffer.objects.all()
+        website = self.request.query_params.get('website', None)
+        if website is not None:
+            queryset = queryset.filter(domain=website)
+        return queryset
+
+class CreditCardOfferViewSet(viewsets.ReadOnlyModelViewSet):
+    queryset = CreditCardOffer.objects.all()
+    serializer_class = CreditCardOfferSerializer
+    def get_queryset(self):
+        queryset = CreditCardOffer.objects.all()
+        website = self.request.query_params.get('website', None)
+        if website is not None:
+            queryset = queryset.filter(domain=website)
+        return queryset
+
+
+class CreditCardWebsiteView(APIView):
+    def get(self, request, format=None):
+        data = list()
+        for row in CreditCardOffer.objects.values('domain').annotate(creditcard_count=Count('domain')):
+            row['short_domain'] = row['domain'].replace('www.','')
+            data.append(row)
+        return Response(data)

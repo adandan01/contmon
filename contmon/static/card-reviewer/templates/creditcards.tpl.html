@@ -1,4 +1,4 @@
-<div style="position: relative; min-height: 800px;">
+<div style="position: relative; height: 800px;">
     <div ui-layout="{ flow : 'column' }" class="layout-column">
         <div ui-layout-container size="130px">
             <table class="table">
@@ -9,14 +9,14 @@
                 </thead>
                 <tbody>
                 <tr ng-repeat="website in creditcards.websites">
-                    <td><a ng-click="creditcards.filter_by_website=website">{{ website }}</a></td>
+                    <td><a ng-click="creditcards.filterByWebsite(website.domain)" href="">{{ website.short_domain }} ({{ website.creditcard_count }})</a></td>
                 </tr>
                 </tbody>
             </table>
 
         </div>
         <div ui-layout-container>
-            <div infinite-scroll="creditcards.loadMore()" nfinite-scroll-distance="0">
+            <div>
                 <table class="table">
                     <thead>
                     <tr>
@@ -26,7 +26,7 @@
                     </tr>
                     </thead>
                     <tbody>
-                    <tr ng-repeat="card in creditcards.list | filter:creditcards.filter_by_website">
+                    <tr ng-repeat="card in creditcards.list ">
                         <td><a ui-sref=".details({id:card.id})">{{ card.name }}</a></td>
                         <td>{{ card.domain }}</td>
                     </tr>

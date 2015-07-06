@@ -11,10 +11,12 @@ angular
 
 Config.$inject = [
     '$urlRouterProvider',
-    '$stateProvider'
+    '$stateProvider',
+    '$locationProvider'
 ];
 
-function Config($urlRouterProvider, $stateProvider) {
+function Config($urlRouterProvider, $stateProvider, $locationProvider) {
+    $locationProvider.html5Mode(true);
     $urlRouterProvider.otherwise('/home'); // default route
 
     $stateProvider.state('home', {

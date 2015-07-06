@@ -6,7 +6,7 @@
 }
 
 body {
-    padding-top: 50px;
+    padding-top: 60px;
     min-width: 768px;
 }
 
@@ -25,4 +25,5 @@ body {
 }
 .stretch {
     overflow: auto;
+    /*top:0;*/
 }
