@@ -1,0 +1,39 @@
+Link	URL
+Featured Credit              Cards	/best-credit-cards.shtml
+0% Introductory APR              Credit Cards	/0-apr-credit-cards.shtml
+0% Balance              Transfer Cards	/credit-cards-with-zero-transfer-fee-zero-interest.shtml
+EMV Credit Cards	/emv-chip-credit-cards-usa.shtml
+High Limit Credit Cards	/high-limit-credit-cards.shtml
+Instant Response Cards	/credit-cards-for-bad-credit-instant-approval.shtml
+Lines Of Credit (Bad Credit)	/line-credit-bad-credit.shtml
+Low Interest              Credit Cards	/low-interest-credit-cards.shtml
+No Annual Fee              Credit Cards	/no-annual-fee-credit-card.shtml
+Rewards              Credit Cards	/rewards-credit-cards.shtml
+Air              Miles Credit Cards	/credit-cards-with-most-miles.shtml
+Cash              Back Credit Cards	/cash-back-credit-cards.shtml
+Gas              Rewards Credit Cards	/gas-cards-online.shtml
+Hotel Credit Cards	/hotel-credit-cards-free-night-stay.shtml
+Points              Rewards Credit Cards	/points-rewards-credit-cards.shtml
+Retail              Rewards Credit Cards	/retail-department-credit-cards.shtml
+Travel              Rewards Credit Cards	/travel-rewards-credit-cards.shtml
+Small              Business Credit Cards	/business-credit-cards.shtml
+Secured              Credit Cards	/secured-credit-cards.shtml
+Student              Credit Cards	/student-credit-cards.shtml
+Unsecured              Credit Cards - Bad Credit	/unsecured-credit-cards-bad-credit.shtml
+Catalog Credit Cards	/buy-now-pay=later-catalogs.shtml
+Prepaid              Debit Cards	/prepaid-credit-cards.shtml
+Excellent              Credit	/excellent-credit-cards.shtml
+Good Credit	/good-credit-cards.shtml
+Fair Credit	/fair-credit-cards.shtml
+Bad Credit	/credit-cards-for=bad-credit.shtml
+Limited / No Credit	/limited-no-credit-credit-cards.shtml
+American              Express®	/american-express-credit-cards.shtml
+Citi®	/creditcards.citi.shtml
+Discover®	/apply-discover-card-invitation.shtml
+First              PREMIER® Bank	/1st-premier-credit-card.shtml
+Simmons First	/simmons-first-bank-credit-cards.shtml
+U.S. Bank®	/usbank-credit-cards.shtml
+USAA®	/usaa-com-credit-cards.shtml
+MasterCard®	/mastercard-credit-cards.shtml
+Visa®	/visa-credit-cards.shtml
+

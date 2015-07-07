@@ -1,3 +1,7 @@
 from django.contrib import admin
+from reversion_compare.admin import CompareVersionAdmin
+from .models import WebsiteScraperConfig
 
-# Register your models here.
+@admin.register(WebsiteScraperConfig)
+class ScraperConfigAdmin(CompareVersionAdmin):
+    pass

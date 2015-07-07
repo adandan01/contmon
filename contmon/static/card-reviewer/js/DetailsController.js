@@ -21,6 +21,18 @@
         });
 
         console.log(window.location);
+        vm.markCompliant = function() {
+
+        };
+        vm.markNotCompliant = function() {
+
+        };
+        vm.markIgnore = function() {
+
+        };
+        vm.markReviewState = function(review_state) {
+
+        };
     }
 
 })();

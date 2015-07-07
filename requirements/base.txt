@@ -39,3 +39,10 @@ simplejson
 django-haystack
 Whoosh
 djangorestframework
+django-reversion
+jsonfield
+selenium
+lxml
+cssselect
+django-reversion-compare
+diff-match-patch

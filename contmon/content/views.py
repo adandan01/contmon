@@ -4,7 +4,7 @@ from django.db.models import Count
 
 from django.views.generic import DetailView, ListView
 from braces.views import LoginRequiredMixin
-from rest_framework import viewsets, generics
+from rest_framework import viewsets, generics, permissions
 from rest_framework.response import Response
 from rest_framework.views import APIView
 
@@ -54,6 +54,7 @@ class CreditCardOfferAPIListView(generics.ListAPIView):
 class CreditCardOfferViewSet(viewsets.ReadOnlyModelViewSet):
     queryset = CreditCardOffer.objects.all()
     serializer_class = CreditCardOfferSerializer
+    permission_classes = (permissions.IsAuthenticated,)
     def get_queryset(self):
         queryset = CreditCardOffer.objects.all()
         website = self.request.query_params.get('website', None)
@@ -63,9 +64,10 @@ class CreditCardOfferViewSet(viewsets.ReadOnlyModelViewSet):
 
 
 class CreditCardWebsiteView(APIView):
+    permission_classes = (permissions.IsAuthenticated,)
     def get(self, request, format=None):
         data = list()
-        for row in CreditCardOffer.objects.values('domain').annotate(creditcard_count=Count('domain')):
+        for row in CreditCardOffer.objects.all().values('domain').annotate(creditcard_count=Count('domain')):
             row['short_domain'] = row['domain'].replace('www.','')
             data.append(row)
         return Response(data)

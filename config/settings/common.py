@@ -42,12 +42,15 @@ THIRD_PARTY_APPS = (
     'allauth.socialaccount',  # registration
     'haystack',
     'rest_framework',
+    'reversion',
+    'reversion_compare',
 )
 
 # Apps specific for this project go here.
 LOCAL_APPS = (
-    'contmon.users',  # custom users app
-    'contmon.content',  # custom users app
+    'contmon.users',
+    'contmon.content',
+    'contmon.scraper',
     # Your stuff: custom apps go here
 )
 

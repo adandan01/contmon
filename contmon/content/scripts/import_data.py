@@ -7,12 +7,15 @@ from io import BytesIO
 
 from django.core.files.base import ContentFile
 
+from lxml.html import fromstring
+
 from bvgs.serialization.json import load_data_from_json_file
 from contmon.content.models import CrawlUrl, CrawledPage, CreditCardOffer
+from contmon.scraper.models import WebsiteScraperConfig
 
 
 def run():
-    file_paths = glob.glob('/home/brandverity/contmon/data/**/*.json')
+    file_paths = glob.glob('/home/brandverity/contmon/data/scraper/**/www.creditkarma*.json')
     print 'importing data from contmon'
     for data_file in file_paths:
         print 'reading from', data_file
@@ -41,7 +44,7 @@ def run():
                                                                       content_hash="",
                                                                       text="")
 
-            crawled_page.image.save( domain + '_' + path + '_page_' + str(page_num) + ".png",
+            crawled_page.image.save(domain + '_' + path + '_page_' + str(page_num) + ".png",
                                     ContentFile(base64.b64decode(screenshot_str)))
             crawled_pages.append({'crawled_page': crawled_page, 'image': img})
 
@@ -49,7 +52,17 @@ def run():
 
         for j, row in enumerate(page_result['results']):
             crawled_page = crawled_pages[row['page_num'] - 1]
-            row['title'] = row['text'].split('\n')[0]
+            html_tree = fromstring(row['html'])
+            scraper_config = WebsiteScraperConfig.objects.get(domain=domain)
+            if scraper_config.selector_style == WebsiteScraperConfig.SELECTOR_STYLE_CSS:
+                e = html_tree.cssselect(scraper_config.name_selector)
+                name_element = e[0] if len(e) > 0 else None
+            else:
+                e = html_tree.find(scraper_config.name_selector)
+                name_element = e[0] if len(e) > 0  else None
+            if name_element:
+                row['extracted_fields'] = {'name': name_element.text_content().strip()}
+            print 'name', row['extracted_fields']['name']
             row['url_and_page_num'] = {'url': page_result['url'], 'page_num': row['page_num']}
             row['domain'] = domain
             row['path'] = path
@@ -66,11 +79,28 @@ def run():
 
                 offer = CreditCardOffer.objects.get(domain=crawled_page['crawled_page'].crawl_url.domain,
                                                     content_hash=row['content_hash'])
+
+                offer.extracted_fields = row['extracted_fields']
+                offer.save()
+                print 'saving raw html'
+
+                offer.html.save(
+                    '_'.join([crawled_page['crawled_page'].crawl_url.domain, row['path'], str(row['page_num']), str(j),
+                              'html']),
+                    ContentFile(row['html']))
+                offer.save()
             except CreditCardOffer.DoesNotExist:
                 offer = CreditCardOffer.objects.create(domain=crawled_page['crawled_page'].crawl_url.domain,
                                                        content_hash=row['content_hash'], location_x=location['x'],
                                                        location_y=location['y'], size_width=size['width'],
                                                        size_height=size['height'], text=row['text'])
+
+                print 'saving raw html'
+
+                offer.html.save(
+                    '_'.join([crawled_page['crawled_page'].crawl_url.domain, row['path'], str(row['page_num']), str(j),
+                              'html']),
+                    ContentFile(row['html']))
                 with BytesIO() as file_buffer:
                     left = location['x']
                     top = location['y']
@@ -80,9 +110,11 @@ def run():
                     img = crawled_page['image']
                     new_image = img.crop((left, top, right, bottom))  # defines crop points
                     new_image.save(file_buffer, format="png", quality=100, optimize=True, progressive=True)
-                    #TODO: improve file name to be more sensible
+                    # TODO: improve file name to be more sensible
                     offer.image.save(
-                        '_'.join([crawled_page['crawled_page'].crawl_url.domain, row['path'], str(row['page_num']), str(j),'png']),
+                        '_'.join(
+                            [crawled_page['crawled_page'].crawl_url.domain, row['path'], str(row['page_num']), str(j),
+                             'png']),
                         ContentFile(file_buffer.getvalue()))
 
             # offer was found on this page

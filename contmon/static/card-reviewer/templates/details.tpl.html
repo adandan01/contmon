@@ -1,18 +1,59 @@
 <div class="container-fluid slide card-details">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h4>{{ details.name }} </h4>
+        </div>
+        <div class="panel-body">
+            <p>Domain: {{ details.domain }}</p>
 
-    <h4>{{ details.name }} </h4>
+            <p class="">
+                <img src="{{ details.image }}" width="99%" height="50%">
 
-    <p>Domain: {{ details.domain }}</p>
 
-    <p class="">
-        <img src="{{ details.image }}" width="90%" height="50%">
-    </p>
+            </p>
 
-    <p>Appears on : </p>
-    <ul>
-        <li ng-repeat="url in details.crawl_urls">{{ url.path }}</li>
+            <div ng-show="details.name " class="pull-left">Review State:  <span
+                    style="font-size: 16px;">
+                        <span class="label"
+                              ng-class="{'label-success': details.review_state==1 , 'label-warning': details.review_state==0, 'label-danger': details.review_state==2}">{{ details.review_state_display }}</span>
 
-    </ul>
-    <p>{{ details.text }}</p>
+                    </span>
+            </div>
+            <div class="pull-right" ng-show="details.name ">
+                <!-- Split button -->
+
+                <div class="btn-group">
+
+                    <button type="button" class="btn btn-default">Reivew</button>
+                    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown"
+                            aria-haspopup="true" aria-expanded="false">
+                        <span class="caret"></span>
+                        <span class="sr-only">Toggle Dropdown</span>
+                    </button>
+                    <ul class="dropdown-menu">
+                        <li><a href="" ng-click="details.markCompliant()">Mark Compliant</a></li>
+                        <li role="separator" class="divider"></li>
+                        <li><a href="" ng-click="details.markNotCompliant()">Mark Not Compliant</a></li>
+                        <li role="separator" class="divider"></li>
+                        <li><a href="" ng-click="details.markIgnore()">Ignore</a></li>
+
+                    </ul>
+                </div>
+
+            </div>
+            <div class="clearfix"></div>
+
+            <p>Appears on : </p>
+            <ul>
+                <li ng-repeat="url in details.crawl_urls">{{ url.path }}</li>
+
+            </ul>
+            <h4>Review History</h4>
+            <ul>
+                <li>test</li>
+            </ul>
+        </div>
+    </div>
+
 
 </div>

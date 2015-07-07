@@ -12,12 +12,15 @@ angular
 Config.$inject = [
     '$urlRouterProvider',
     '$stateProvider',
-    '$locationProvider'
+    '$locationProvider',
+    '$httpProvider'
 ];
 
-function Config($urlRouterProvider, $stateProvider, $locationProvider) {
-    $locationProvider.html5Mode(true);
-    $urlRouterProvider.otherwise('/home'); // default route
+function Config($urlRouterProvider, $stateProvider, $locationProvider, $httpProvider) {
+    //$locationProvider.html5Mode(true);
+    $httpProvider.defaults.xsrfCookieName = 'csrftoken';
+    $httpProvider.defaults.xsrfHeaderName = 'X-CSRFToken';
+    $urlRouterProvider.otherwise('/creditcards'); // default route
 
     $stateProvider.state('home', {
         url: '/home',

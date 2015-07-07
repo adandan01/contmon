@@ -1,0 +1,24 @@
+Link	URL
+Featured Cards by Credit Score	/shop/creditcards
+Balance Transfer Credit Cards	/shop/creditcards/balance_transfer
+Low Interest Credit Cards	/shop/creditcards/low_interest
+Rewards Credit Cards	/shop/creditcards/reward_cards
+Cash Back Credit Cards	/shop/creditcards/cash_back
+Airline Credit Cards	/shop/creditcards/airline
+Student Credit Cards	/shop/creditcards/student_cards
+Business Credit Cards	/shop/creditcards/business
+Secured Credit Cards	/shop/creditcards/secured_cards
+Prepaid Debit Cards	/shop/creditcards/prepaid
+No Annual Fee Credit Cards	/shop/creditcards/noannualfee
+Retail Credit Cards	/shop/creditcards/retail
+Sign-Up Bonus Credit Cards	/shop/creditcards/sign-up-bonus
+Zero Percent Credit Cards	/shop/creditcards/zero_percent
+No Foreign Transaction Fee Cards	/shop/creditcards/no_foreign_fees
+Sports Credit Cards	/shop/creditcards/sports
+American Express Credit Cards	/shop/creditcards/american_express
+Bank of America Credit Cards	/shop/creditcards/bank_of_america
+Barclaycard Credit Cards	/shop/creditcards/barclays
+Capital One Credit Cards	/shop/creditcards/capital_one
+Citi Credit Cards	/shop/creditcards/citi
+Chase Credit Cards	/shop/creditcards/chase
+Discover Credit Cards	/shop/creditcards/discover

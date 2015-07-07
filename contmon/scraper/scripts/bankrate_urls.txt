@@ -1,0 +1,27 @@
+Link	URL
+Low Interest Cards	/credit-cards/low-interest-cards.aspx
+Cash Back Cards	/credit-cards/cash-back-cards.aspx
+Reward Cards	/credit-cards/rewards-cards.aspx
+Airline Cards	/credit-cards/airline-miles-cards.aspx
+Gas Cards	/credit-cards/gas-cards.aspx
+0% APR Cards	/credit-cards/0-interest-apr-cards.aspx
+Balance Transfer Cards	/credit-cards/balance-transfer-cards.aspx
+Business Cards	/credit-cards/business-cards.aspx
+Student Cards	/credit-cards/student-cards.aspx
+Prepaid & Debit Cards	/credit-cards/prepaid-debit-cards.aspx
+Secured Cards	/credit-cards/secured-cards.aspx
+No Annual Fee Cards	/credit-cards/no-annual-fee-cards.aspx
+No Foreign Transaction Fee Cards	/credit-cards/no-foreign-transaction-fee-cards.aspx
+Excellent Credit	/credit-cards/excellent-credit-cards.aspx
+Good Credit	/credit-cards/good-credit-cards.aspx
+Fair Credit	/credit-cards/fair-credit-cards.aspx
+Bad Credit	/credit-cards/bad-credit-cards.aspx
+American Express	/credit-cards/american-express-cards.aspx
+Bank of America	/credit-cards/bank-of-america-cards.aspx
+Barclaycard	/credit-cards/barclaycard-cards.aspx
+Capital One	/credit-cards/capital-one-cards.aspx
+Chase	/credit-cards/chase-cards.aspx
+Citi Cards	/credit-cards/citi-cards.aspx
+Discover	/credit-cards/discover-cards.aspx
+MasterCard	/credit-cards/mastercard-cards.aspx
+Visa	/credit-cards/visa-cards.aspx
