@@ -46,3 +46,4 @@ lxml
 cssselect
 django-reversion-compare
 diff-match-patch
+drf-extensions

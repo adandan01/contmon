@@ -2,6 +2,7 @@ angular
     .module('myapp', [
         'ui.router',
         'ui.layout',
+        'ngSanitize',
         'infinite-scroll',
         'myapp.home',
         'myapp.creditcards'

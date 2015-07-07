@@ -7,6 +7,7 @@ from braces.views import LoginRequiredMixin
 from rest_framework import viewsets, generics, permissions
 from rest_framework.response import Response
 from rest_framework.views import APIView
+from rest_framework_extensions.cache.mixins import ListCacheResponseMixin
 
 from .serializers import CreditCardOfferSerializer
 from .models import CrawledPage, CreditCardOffer
@@ -51,7 +52,8 @@ class CreditCardOfferAPIListView(generics.ListAPIView):
             queryset = queryset.filter(domain=website)
         return queryset
 
-class CreditCardOfferViewSet(viewsets.ModelViewSet):
+
+class CreditCardOfferViewSet(ListCacheResponseMixin, viewsets.ModelViewSet):
     queryset = CreditCardOffer.objects.all()
     serializer_class = CreditCardOfferSerializer
     permission_classes = (permissions.IsAuthenticated,)

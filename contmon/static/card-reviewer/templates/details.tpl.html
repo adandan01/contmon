@@ -3,7 +3,7 @@
         <div class="panel-heading">
             <h4>{{ details.name }} </h4>
         </div>
-        <div class="panel-body">
+        <div class="panel-body" ng-show="details.name ">
             <p>Domain: {{ details.domain }}</p>
 
             <p class="">
@@ -12,14 +12,14 @@
 
             </p>
 
-            <div ng-show="details.name " class="pull-left">Review State:  <span
+            <div class="pull-left">Review State:  <span
                     style="font-size: 16px;">
                         <span class="label"
                               ng-class="{'label-success': details.review_state==1 , 'label-warning': details.review_state==0, 'label-danger': details.review_state==2, 'label-info': details.review_state==3}">{{ details.review_state_display }}</span>
 
                     </span>
             </div>
-            <div class="pull-right" ng-show="details.name ">
+            <div class="pull-right">
                 <!-- Split button -->
 
                 <div class="btn-group">
@@ -49,9 +49,25 @@
 
             </ul>
             <h4>Review History</h4>
-            <ul>
-                <li>test</li>
-            </ul>
+            <table class="table" ng-show="details.review_state_change_history.length">
+                <thead>
+                <tr>
+                    <th>User</th>
+                    <th>Details</th>
+                    <th>Date</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr ng-repeat="change_log in details.review_state_change_history ">
+                    <td>{{ change_log.user }}</td>
+                    <td><span ng-bind-html="change_log.patch_html"></span></td>
+                    <td>{{ change_log.date }}</td>
+
+                </tr>
+                </tbody>
+            </table>
+            <p ng-hide="details.review_state_change_histor.length">No Review History</p>
+
         </div>
     </div>
 

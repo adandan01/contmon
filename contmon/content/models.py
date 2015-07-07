@@ -6,6 +6,8 @@ from django.db import models
 #     pass
 from jsonfield import JSONField
 from model_utils.models import TimeStampedModel
+import reversion
+from reversion.helpers import generate_patch_html
 
 
 class CrawlUrl(TimeStampedModel):
@@ -49,6 +51,19 @@ class AbstractExtractedContent(TimeStampedModel):
     content_hash = models.CharField(max_length=500, db_index=True)
     text = models.TextField(blank=True)
     review_state = models.SmallIntegerField(choices=REVIEW_STATES, db_index=True, default=REVIEW_STATES_NEVER_REVIEWED)
+
+    @property
+    def review_state_change_history(self):
+        available_versions = list(reversion.get_for_object(self)[:5])
+        history_log = []
+        for i, version in enumerate(available_versions):
+            if i < len(available_versions)-1 :
+                old_version = available_versions[i+1]
+                new_version = available_versions[i]
+                patch_html = generate_patch_html(old_version, new_version , "review_state", cleanup="semantic")
+                history_log.append({'user':version.revision.user.username if version.revision.user else '','date': version.revision.date_created, 'patch_html':patch_html})
+        return history_log
+
 
     #TODO should reference the extractor
     class Meta:

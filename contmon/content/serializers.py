@@ -21,4 +21,4 @@ class CreditCardOfferSerializer(serializers.ModelSerializer):
         return obj.get_review_state_display()
     class Meta:
         model = CreditCardOffer
-        fields = ('id', 'name', 'domain', 'image', 'review_state', 'review_state_display','review_states', 'text', 'crawl_urls')
+        fields = ('id', 'name', 'domain', 'image', 'review_state', 'review_state_display','review_states', 'text', 'crawl_urls', 'review_state_change_history')
