@@ -1,45 +1,44 @@
-<div style="position: relative; height: 800px;">
-    <div ui-layout="{ flow : 'column' }" class="layout-column">
-        <div ui-layout-container size="130px">
+<div ui-layout="{ flow : 'column' }" class="layout-column">
+    <div ui-layout-container size="130px">
+        <table class="table">
+            <thead>
+            <tr>
+                <th>Websites</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr ng-repeat="website in creditcards.websites">
+                <td><a ng-click="creditcards.filterByWebsite(website.domain)" href="">{{ website.short_domain }}
+                    ({{ website.creditcard_count }})</a></td>
+            </tr>
+            </tbody>
+        </table>
+
+    </div>
+    <div ui-layout-container>
+        <div>
             <table class="table">
                 <thead>
                 <tr>
-                    <th>Websites</th>
+
+                    <th>Card Name</th>
+
                 </tr>
                 </thead>
                 <tbody>
-                <tr ng-repeat="website in creditcards.websites">
-                    <td><a ng-click="creditcards.filterByWebsite(website.domain)" href="">{{ website.short_domain }} ({{ website.creditcard_count }})</a></td>
+                <tr ng-repeat="card in creditcards.list ">
+                    <td><a ui-sref=".details({id:card.id})">{{ card.name }}</a></td>
+                    <td>{{ card.domain }}</td>
                 </tr>
                 </tbody>
             </table>
-
-        </div>
-        <div ui-layout-container>
-            <div>
-                <table class="table">
-                    <thead>
-                    <tr>
-
-                        <th>Card Name</th>
-
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <tr ng-repeat="card in creditcards.list ">
-                        <td><a ui-sref=".details({id:card.id})">{{ card.name }}</a></td>
-                        <td>{{ card.domain }}</td>
-                    </tr>
-                    </tbody>
-                </table>
-                <div ng-show='creditcards.busy'>Loading data...</div>
-
-            </div>
+            <div ng-show='creditcards.busy'>Loading data...</div>
 
         </div>
 
-        <div ui-layout-container size="55%">
-            <div ui-view></div>
-        </div>
+    </div>
+
+    <div ui-layout-container size="55%">
+        <div ui-view></div>
     </div>
 </div>

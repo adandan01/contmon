@@ -21,9 +21,8 @@ body {
     color: black;
 }
 .navbar-fixed-top{
-    margin-bottom: 30px;
+    margin-bottom: 50px;
 }
-.stretch {
-    overflow: auto;
-    /*top:0;*/
+.ui-layout-column {
+    margin-top: 55px;
 }
