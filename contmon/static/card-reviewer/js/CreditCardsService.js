@@ -38,7 +38,7 @@
                 method: "GET",
                 params: {website: website}
             });
-        }
+        };
         var list_by_page = function (page) {
 
             return $http({
@@ -52,12 +52,11 @@
             return $http.get('/content/api/creditcards/' + id + '/');
         };
 
-        var set_review_stae = function (page, review_state) {
-
+        var changeReviewState = function (id, review_state) {
             return $http({
                 url: '/content/api/creditcards/' + id + '/',
-                method: "POST",
-                params: {review_state: review_state}
+                method: "PATCH",
+                data: {review_state: review_state}
             });
         };
 
@@ -66,6 +65,7 @@
             list: list,
             list_by_page: list_by_page,
             list_by_website: list_by_website,
+            changeReviewState: changeReviewState,
             getById: getById,
             websites: websites
         }

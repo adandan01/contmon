@@ -51,7 +51,7 @@ class CreditCardOfferAPIListView(generics.ListAPIView):
             queryset = queryset.filter(domain=website)
         return queryset
 
-class CreditCardOfferViewSet(viewsets.ReadOnlyModelViewSet):
+class CreditCardOfferViewSet(viewsets.ModelViewSet):
     queryset = CreditCardOffer.objects.all()
     serializer_class = CreditCardOfferSerializer
     permission_classes = (permissions.IsAuthenticated,)
