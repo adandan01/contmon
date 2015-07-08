@@ -4,28 +4,17 @@
             <h4>{{ details.name }} </h4>
         </div>
         <div class="panel-body" ng-show="details.name ">
-            <p>Domain: {{ details.domain }}</p>
-
-            <p class="">
-                <img src="{{ details.image }}" width="99%" height="50%">
-
-
-            </p>
-
-            <div class="pull-left">Review State:  <span
+            <div class="">Review State:  <span
                     style="font-size: 16px;">
                         <span class="label"
                               ng-class="{'label-success': details.review_state==1 , 'label-warning': details.review_state==0, 'label-danger': details.review_state==2, 'label-info': details.review_state==3}">{{ details.review_state_display }}</span>
 
                     </span>
-            </div>
-            <div class="pull-right">
-                <!-- Split button -->
 
                 <div class="btn-group">
 
-                    <button type="button" class="btn btn-default">Reivew</button>
-                    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown"
+                    <button type="button" class="btn btn-default btn-sm" data-toggle="dropdown">Reivew</button>
+                    <button type="button" class="btn btn-default btn-sm dropdown-toggle" data-toggle="dropdown"
                             aria-haspopup="true" aria-expanded="false">
                         <span class="caret"></span>
                         <span class="sr-only">Toggle Dropdown</span>
@@ -39,6 +28,20 @@
 
                     </ul>
                 </div>
+            </div>
+            <div class="clearfix"></div>
+            <p>Domain: {{ details.domain }}</p>
+
+            <p class="">
+                <img src="{{ details.image }}" style="max-height: 50%; max-width: 90%;">
+
+
+            </p>
+
+
+            <div class="pull-right">
+                <!-- Split button -->
+
 
             </div>
             <div class="clearfix"></div>
@@ -50,17 +53,16 @@
                 <table class="table" ng-show="details.review_state_change_history.length >0">
                     <thead>
                     <tr>
-                        <th>User</th>
                         <th>Details</th>
                         <th>Date</th>
+                        <th>Reviewed By</th>
                     </tr>
                     </thead>
                     <tbody>
                     <tr ng-repeat="change_log in details.review_state_change_history ">
-                        <td>{{ change_log.user }}</td>
                         <td><span ng-bind-html="change_log.patch_html"></span></td>
                         <td>{{ change_log.date }}</td>
-
+                        <td>{{ change_log.user }}</td>
                     </tr>
                     </tbody>
                 </table>
