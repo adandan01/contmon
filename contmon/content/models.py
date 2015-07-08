@@ -7,7 +7,6 @@ from django.db import models
 from jsonfield import JSONField
 from model_utils.models import TimeStampedModel
 import reversion
-from reversion.helpers import generate_patch_html
 
 
 class CrawlUrl(TimeStampedModel):
@@ -15,12 +14,18 @@ class CrawlUrl(TimeStampedModel):
     domain = models.CharField(max_length=400, db_index=True)
     path = models.CharField(max_length=400)
 
+    def __unicode__(self):
+        return self.url
+
 class CrawledPage(TimeStampedModel):
     crawl_url = models.ForeignKey(CrawlUrl)
     page_number = models.IntegerField()
     image = models.ImageField(upload_to='crawled_page')
     text = models.TextField(blank=True)
     content_hash = models.CharField(max_length=500, db_index=True)
+
+    def __unicode__(self):
+        return "crawled page: %s page number:" % (self.crawl_url, self.page_number)
 
 
 class AbstractExtractedContent(TimeStampedModel):
@@ -39,6 +44,7 @@ class AbstractExtractedContent(TimeStampedModel):
         (REVIEW_STATES_NOT_COMPLIANT, REVIEW_STATES_NOT_COMPLIANT_LABEL),
         (REVIEW_STATES_IRRELEVANT, REVIEW_STATES_IRRELEVANT_LABEL),
     )
+    REVIEW_STATES_DICT = dict(REVIEW_STATES)
     crawl_urls = models.ManyToManyField(CrawlUrl)
     domain = models.CharField(max_length=400, db_index=True, default='')
     image = models.ImageField(upload_to='extracted_content')
@@ -54,14 +60,18 @@ class AbstractExtractedContent(TimeStampedModel):
 
     @property
     def review_state_change_history(self):
-        available_versions = list(reversion.get_for_object(self)[:5])
+        available_versions = list(reversion.get_for_object(self)[:20])
         history_log = []
         for i, version in enumerate(available_versions):
-            if i < len(available_versions)-1 :
+            if i < (len(available_versions)-1) :
                 old_version = available_versions[i+1]
                 new_version = available_versions[i]
-                patch_html = generate_patch_html(old_version, new_version , "review_state", cleanup="semantic")
-                history_log.append({'user':version.revision.user.username if version.revision.user else '','date': version.revision.date_created, 'patch_html':patch_html})
+                field_name = 'review_state'
+                old_text = old_version.field_dict.get(field_name, "")
+                new_text = new_version.field_dict.get(field_name, "")
+                message = "<del><span class='bg-warning'>%s</span></del>  <ins><span class='bg-info'>%s</span></ins>" % (self.REVIEW_STATES_DICT[old_text], self.REVIEW_STATES_DICT[new_text])
+                history_log.append({'user':version.revision.user.username if version.revision.user else '','date': version.revision.date_created.strftime('%B %d., %Y, %I:%M%p:%S'), 'patch_html':message })
+
         return history_log
 
 

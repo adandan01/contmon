@@ -15,7 +15,7 @@ from contmon.scraper.models import WebsiteScraperConfig
 
 
 def run():
-    file_paths = glob.glob('/home/brandverity/contmon/data/scraper/**/www.creditkarma*.json')
+    file_paths = glob.glob('/home/brandverity/contmon/data/scraper/**/*.json')
     print 'importing data from contmon'
     for data_file in file_paths:
         print 'reading from', data_file

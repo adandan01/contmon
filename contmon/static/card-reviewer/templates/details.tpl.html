@@ -43,30 +43,37 @@
             </div>
             <div class="clearfix"></div>
 
-            <p>Appears on : </p>
-            <ul>
-                <li ng-repeat="url in details.crawl_urls">{{ url.path }}</li>
 
-            </ul>
             <h4>Review History</h4>
-            <table class="table" ng-show="details.review_state_change_history.length">
-                <thead>
-                <tr>
-                    <th>User</th>
-                    <th>Details</th>
-                    <th>Date</th>
-                </tr>
-                </thead>
-                <tbody>
-                <tr ng-repeat="change_log in details.review_state_change_history ">
-                    <td>{{ change_log.user }}</td>
-                    <td><span ng-bind-html="change_log.patch_html"></span></td>
-                    <td>{{ change_log.date }}</td>
 
-                </tr>
-                </tbody>
-            </table>
-            <p ng-hide="details.review_state_change_histor.length">No Review History</p>
+            <div class="col-md-10">
+                <table class="table" ng-show="details.review_state_change_history.length >0">
+                    <thead>
+                    <tr>
+                        <th>User</th>
+                        <th>Details</th>
+                        <th>Date</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr ng-repeat="change_log in details.review_state_change_history ">
+                        <td>{{ change_log.user }}</td>
+                        <td><span ng-bind-html="change_log.patch_html"></span></td>
+                        <td>{{ change_log.date }}</td>
+
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="col-md-10">
+                <p ng-hide="details.review_state_change_history.length>0">No Review History</p>
+
+                <p>Appears on : </p>
+                <ul>
+                    <li ng-repeat="url in details.crawl_urls">{{ url.path }}</li>
+
+                </ul>
+            </div>
 
         </div>
     </div>

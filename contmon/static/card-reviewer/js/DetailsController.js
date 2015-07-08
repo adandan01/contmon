@@ -17,31 +17,38 @@
         console.log("Details controller");
         var vm = this;
         vm.id = parseInt($stateParams.id);
-        CreditCardsService.getById(vm.id).success(function(data, status) {
-            angular.extend(vm, data);
-        });
+        function getDetails() {
+            CreditCardsService.getById(vm.id).success(function (data, status) {
+                angular.extend(vm, data);
+            });
+        }
+        getDetails();
+
 
         console.log(window.location);
-        vm.markCompliant = function() {
-            CreditCardsService.changeReviewState(vm.id, 1).success(function(data, status) {
+        vm.markCompliant = function () {
+            CreditCardsService.changeReviewState(vm.id, 1).success(function (data, status) {
                 console.log('review state change successfully');
                 angular.extend(vm, data);
+                getDetails();
             });
         };
-        vm.markNotCompliant = function() {
-            CreditCardsService.changeReviewState(vm.id, 2).success(function(data, status) {
+        vm.markNotCompliant = function () {
+            CreditCardsService.changeReviewState(vm.id, 2).success(function (data, status) {
                 console.log('review state change successfully');
                 angular.extend(vm, data);
+                getDetails();
             });
         };
-        vm.markIgnore = function() {
-            CreditCardsService.changeReviewState(vm.id, 3).success(function(data, status) {
+        vm.markIgnore = function () {
+            CreditCardsService.changeReviewState(vm.id, 3).success(function (data, status) {
                 console.log('review state change successfully');
                 angular.extend(vm, data);
+                getDetails();
             });
 
         };
-        vm.markReviewState = function(review_state) {
+        vm.markReviewState = function (review_state) {
 
         };
     }

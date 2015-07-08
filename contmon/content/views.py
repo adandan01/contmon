@@ -58,7 +58,7 @@ class CreditCardOfferViewSet(ListCacheResponseMixin, viewsets.ModelViewSet):
     serializer_class = CreditCardOfferSerializer
     permission_classes = (permissions.IsAuthenticated,)
     def get_queryset(self):
-        queryset = CreditCardOffer.objects.all()
+        queryset = CreditCardOffer.objects.all().order_by('extracted_fields')
         website = self.request.query_params.get('website', None)
         if website is not None:
             queryset = queryset.filter(domain=website)
