@@ -96,6 +96,8 @@ def run():
                                                        size_height=size['height'], text=row['text'])
 
                 print 'saving raw html'
+                offer.extracted_fields = row['extracted_fields']
+                offer.save()
 
                 offer.html.save(
                     '_'.join([crawled_page['crawled_page'].crawl_url.domain, row['path'], str(row['page_num']), str(j),
