@@ -8,7 +8,7 @@ from django.contrib import admin
 from django.views.generic import TemplateView, RedirectView
 
 urlpatterns = [
-    url(r'^$',  RedirectView.as_view(pattern_name='content:card-reviewer')),
+    url(r'^$', TemplateView.as_view(template_name='home.html'), name="home"),
     url(r'^about/$', TemplateView.as_view(template_name='about.html'), name="about"),
 
     # Django Admin
