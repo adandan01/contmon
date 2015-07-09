@@ -5,10 +5,10 @@ from django.conf import settings
 from django.conf.urls import include, url
 from django.conf.urls.static import static
 from django.contrib import admin
-from django.views.generic import TemplateView
+from django.views.generic import TemplateView, RedirectView
 
 urlpatterns = [
-    url(r'^$', TemplateView.as_view(template_name='home.html'), name="home"),
+    url(r'^$',  RedirectView.as_view(pattern_name='content:card-reviewer')),
     url(r'^about/$', TemplateView.as_view(template_name='about.html'), name="about"),
 
     # Django Admin
@@ -18,6 +18,7 @@ urlpatterns = [
     url(r'^users/', include("contmon.users.urls", namespace="users")),
     url(r'^content/', include("contmon.content.urls", namespace="content")),
     url(r'^accounts/', include('allauth.urls')),
+
 
     # Your stuff: custom urls includes go here
 
