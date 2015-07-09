@@ -62,13 +62,16 @@ class AbstractExtractedContent(TimeStampedModel):
     def review_state_change_history(self):
         available_versions = list(reversion.get_for_object(self)[:20])
         history_log = []
+        field_name = 'review_state'
         for i, version in enumerate(available_versions):
-            if i < (len(available_versions)-1) :
+            if i < (len(available_versions)-1):
                 old_version = available_versions[i+1]
-                new_version = available_versions[i]
-                field_name = 'review_state'
                 old_text = old_version.field_dict.get(field_name, "")
-                new_text = new_version.field_dict.get(field_name, "")
+            else:
+                old_text = 0 #never_reviewed
+            new_version = available_versions[i]
+            new_text = new_version.field_dict.get(field_name, "")
+            if new_text != old_text:
                 message = "<del><span class='bg-warning'>%s</span></del>  <ins><span class='bg-info'>%s</span></ins>" % (self.REVIEW_STATES_DICT[old_text], self.REVIEW_STATES_DICT[new_text])
                 history_log.append({'user':version.revision.user.username if version.revision.user else '','date': version.revision.date_created.strftime('%B %d., %Y, %I:%M%p:%S'), 'patch_html':message })
 
