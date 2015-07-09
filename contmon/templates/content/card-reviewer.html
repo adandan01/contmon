@@ -1,3 +1,4 @@
+{% load staticfiles %}
 <!DOCTYPE html>
 <html ng-app="myapp">
 
@@ -26,26 +27,26 @@
     <script data-require="ui-router@*" data-semver="0.2.15"
             src="//rawgit.com/angular-ui/ui-router/0.2.15/release/angular-ui-router.js"></script>
     <!-- lib -->
-    <script src="lib/ui-layout/ui-layout.js"></script>
-    <link rel="stylesheet" href="lib/ui-layout/ui-layout.css"/>
-    <script src="lib/ng-infinite-scroll.min.js"></script>
+    <script src="{% static 'card-reviewer/lib/ui-layout/ui-layout.js' %}"></script>
+    <link rel="stylesheet" href="{% static 'card-reviewer/lib/ui-layout/ui-layout.css' %}"/>
+    <script src="{% static 'card-reviewer/lib/ng-infinite-scroll.min.js' %}"></script>
     <!-- App -->
     <!-- order is irrelevant after app.js -->
-    <script src="js/app.js"></script>
-    <script src="js/AppController.js"></script>
-    <script src="js/HeaderController.js"></script>
+    <script src="{% static 'card-reviewer/js/app.js' %}"></script>
+    <script src="{% static 'card-reviewer/js/AppController.js' %}"></script>
+    <script src="{% static 'card-reviewer/js/HeaderController.js' %}"></script>
     <!-- home -->
-    <script src="js/home.js"></script>
-    <script src="js/HomeController.js"></script>
+    <script src="{% static 'card-reviewer/js/home.js' %}"></script>
+    <script src="{% static 'card-reviewer/js/HomeController.js' %}"></script>
     <!-- users -->
     <!-- now dependencies before users -->
     <!-- details -->
-    <script src="js/details.js"></script>
-    <script src="js/DetailsController.js"></script>
-    <script src="js/creditcards.js"></script>
-    <script src="js/CreditCardsController.js"></script>
-    <script src="js/CreditCardsService.js"></script>
-    <link rel="stylesheet" href="css/style.css"/>
+    <script src="{% static 'card-reviewer/js/details.js' %}"></script>
+    <script src="{% static 'card-reviewer/js/DetailsController.js' %}"></script>
+    <script src="{% static 'card-reviewer/js/creditcards.js' %}"></script>
+    <script src="{% static 'card-reviewer/js/CreditCardsController.js' %}"></script>
+    <script src="{% static 'card-reviewer/js/CreditCardsService.js' %}"></script>
+    <link rel="stylesheet" href="{% static 'card-reviewer/css/style.css' %}"/>
 </head>
 
 <body ng-controller="AppController as app">

@@ -2,6 +2,7 @@
 from __future__ import absolute_import, unicode_literals
 
 from django.conf.urls import url, include
+from django.views.generic import TemplateView
 from rest_framework import routers
 
 from . import views
@@ -10,6 +11,7 @@ router = routers.DefaultRouter()
 router.register(r'creditcards', views.CreditCardOfferViewSet)
 
 urlpatterns = [
+    url(regex=r'^card-reviewer/$', view=TemplateView.as_view(template_name='content/card-reviewer.html'), name='card-reviewer'),
     url(regex=r'^pages/$', view=views.CrawledPageListView.as_view(), name='page-list'),
     url(regex=r'^pages/(?P<id>[\d]+)/$', view=views.CrawledPageDetailView.as_view(), name='page-detail'),
     url(regex=r'^creditcards/$', view=views.CreditCardOfferListView.as_view(), name='creditcard-list'),

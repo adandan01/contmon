@@ -25,19 +25,19 @@ function Config($urlRouterProvider, $stateProvider, $locationProvider, $httpProv
 
     $stateProvider.state('home', {
         url: '/home',
-        templateUrl: 'templates/home.tpl.html',
+        templateUrl: '/static/card-reviewer/templates/home.tpl.html',
         controller: 'HomeController',
         controllerAs: 'home'
     })
         .state('creditcards', {
             url: '/creditcards',
-            templateUrl: 'templates/creditcards.tpl.html',
+            templateUrl: '/static/card-reviewer/templates/creditcards.tpl.html',
             controller: 'CreditCardsController',
             controllerAs: 'creditcards'
         })
         .state('creditcards.details', {
             url: '/:id',
-            templateUrl: 'templates/details.tpl.html',
+            templateUrl: '/static/card-reviewer/templates/details.tpl.html',
             controller: 'DetailsController',
             controllerAs: 'details'
         });
